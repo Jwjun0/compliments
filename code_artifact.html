@@ -1,0 +1,621 @@
+<!doctype html>
+<html lang="ko">
+ <head><script>window["__codeletBootstrap__"]=JSON.parse('{"A":"A","B":"20260904-05-c4a2e96","C":{"Abril Fatface":"YACgEZbkUVE,0","Alfa Slab One":"YACgEYS9sJU,0","Anton":"YACgEcYqQ-A,0","Archivo":"YAHO2-t-jNE,0","Arial":"YAGyDvJ_4Ts,0","Bebas Neue":"YACgESME5ew,0","Bricolage Grotesque":"YAFyMcdwzpc,0","Canva Sans":"YAFLd8sKbwc,2","Caveat":"YALBs2ploWQ,0","Comic Sans MS":"YAHO2VMiyZo,0","Cormorant Garamond":"YAFdJhX-538,0","Courier New":"YAGzXiGs0_8,0","DM Sans":"YAD1aU3sLnI,0","DM Serif Display":"YAD1aYG82rc,0","Forum":"YACgEcnnqB4,0","Fraunces":"YAEul-FRQw4,0","Georgia":"YAGzXkO0pEM,0","Helvetica Neue":"YAFcf6CtJfI,0","Impact":"YAFcfnjI7Vk,0","Inter":"YAFdJvSyp_k,3","Iowan Old Style":"YAGNIFa8j9o,0","Jacques Francois":"YAHO2a5g66Q,0","JetBrains Mono":"YAFdJksXcAk,0","Libre Baskerville":"YACgEUFdPdA,0","Manrope":"YAHO2b2feC4,0","Merriweather":"YACgEXvHxxs,0","Montserrat":"YADLjI9qxTA,0","Nunito":"YACgEX8C5Gg,0","Oleo Script":"YACgEQQ14jI,0","Phantom Sans":"YAHO2E8Pb88,0","Playfair Display":"YACgEYmuCJE,0","Poppins":"YAFdJjbTu24,1","Press Start 2P":"YAFyGr-8pmQ,0","Quicksand":"YADWjpfPmdk,0","Raleway":"YACgEVg3xZg,0","Segoe UI":"YAHNdRD1Klw,0","Source Sans 3":"YAG4lO1Mj10,0","Spectral":"YAHO2rVUHIM,0","Times New Roman":"YAGzXW3gftg,0","Times":"YAGzXW3gftg,0","Ubuntu":"YACgERDU--Q,0","Work Sans":"YAGXhLOKv44,0","Yellowtail":"YACgEYG4kG4,0","ui-monospace":"YADlN8CFZ8Q,0","ui-sans-serif":"YACkoN-xg4g,0"}}');</script><script src="/_sdk/9e99ecf74af2a081.telemetry_sdk.js" xintegrity="sha512-tZ7fmfTx2KpCLjXQnEuL9azQ4A5+7+xumsx6r/WYVD0zCP/8LP8hDeCypMQesmP+WyAew4g7l5Ah23Bjd6yoVg=="></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>우리 반 칭찬 게시판</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.577.0/dist/umd/lucide.min.js"></script>
+  <script src="/_sdk/fbe2ebfd64647c54.data_sdk.js" xintegrity="sha512-vkTX6CfvpHc3WbjK+tFJCaDuw4ERA4aEV/e5/7+MMJPMTF4RJYCI6CAwJBT/gtDW+dba4uLSsPUgDjVDHWtgUQ=="></script>
+  <script src="/_sdk/5629ea66dc55d54f.editing_sdk.js" xintegrity="sha512-snPYzGvgiTEMUBOb+HlCBkFeiM0IRX4hcgA78wvalhC0WnJtaX+RCbosPWtNqZsZ7sZ9NwN0oePZYa+IlMwa+w=="></script>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;family=Fraunces:opsz,wght@9..144,700;9..144,800&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #24312d;
+      --muted: #69756f;
+      --cream: #fffaf0;
+      --coral: #ec6f57;
+      --mint: #dff1e8;
+      --line: #eadfcf;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      width: 100%;
+      min-height: 100%;
+      margin: 0;
+      color: var(--ink);
+      font-family: "DM Sans", sans-serif;
+    }
+
+    .app-shell {
+      width: 100%;
+      min-height: calc(100 * min(var(--vh, 1vh), 1vh));
+      overflow-x: hidden;
+      background:
+        radial-gradient(circle at 6% 2%, rgba(255, 211, 154, 0.38) 0, rgba(255, 211, 154, 0) 24rem),
+        radial-gradient(circle at 95% 20%, rgba(181, 225, 206, 0.45) 0, rgba(181, 225, 206, 0) 24rem),
+        #fffaf0;
+    }
+
+    .display-font { font-family: "Fraunces", serif; }
+
+    .grain {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.12;
+      background-image: radial-gradient(#7b6b5e 0.55px, transparent 0.55px);
+      background-size: 6px 6px;
+      mask-image: linear-gradient(to bottom, black, transparent);
+    }
+
+    .hand-line {
+      width: 66px;
+      height: 8px;
+      border-top: 3px solid #ec6f57;
+      border-radius: 50%;
+      transform: rotate(-5deg);
+    }
+
+    .hero-orbit {
+      position: absolute;
+      right: -1.75rem;
+      top: -2rem;
+      width: 10rem;
+      height: 10rem;
+      border: 18px solid #dff1e8;
+      border-radius: 9999px;
+      opacity: 0.8;
+    }
+
+    .field-input:focus {
+      outline: none;
+      border-color: #ec6f57;
+      box-shadow: 0 0 0 4px rgba(236, 111, 87, 0.14);
+    }
+
+    .field-input::placeholder {
+      color: #a7ada8;
+      opacity: 1;
+    }
+
+    button:focus-visible,
+    select:focus-visible,
+    textarea:focus-visible {
+      outline: 3px solid #24312d;
+      outline-offset: 3px;
+    }
+
+    .status-message {
+      min-height: 1.4rem;
+      transition: opacity 0.2s ease;
+    }
+
+    .admin-only { display: none; }
+    body.admin-mode .admin-only { display: inline-flex; }
+
+    .praise-card {
+      animation: lift-in 0.42s ease both;
+    }
+
+    @keyframes lift-in {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .winner-name {
+      word-break: keep-all;
+      overflow-wrap: anywhere;
+    }
+
+    @media (max-width: 640px) {
+      .hero-orbit { display: none; }
+    }
+  </style>
+  <script src="/_sdk/fcb6dc01f91829ac.resizing_sdk.js" type="text/javascript" xintegrity="sha512-YK8JfnN705qaEaVhiL7pcVB2Rs/BbdX5yxV55Az8zT/1JanyEWTw9HqCF915m9iV1YEaoil8qsjJz03l1Kb0Ug=="></script>
+ </head>
+ <body data-template-id="__page-root">
+  <div class="app-shell">
+   <div class="grain" aria-hidden="true"></div>
+   <header class="relative w-full px-5 pt-8 sm:px-8 lg:px-12">
+    <div class="mx-auto flex max-w-6xl items-center justify-between">
+     <div class="flex items-center gap-3">
+      <div class="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#24312d] text-[#fffaf0] shadow-sm" aria-hidden="true"><i data-lucide="heart-handshake" class="h-5 w-5"></i>
+      </div>
+      <p data-template-id="header-brand" class="canva-text text-sm font-bold tracking-tight">우리 반 칭찬 게시판</p>
+     </div>
+     <div class="flex items-center gap-2">
+      <div data-template-id="header-badge" class="canva-tag rounded-full px-4 py-2 text-xs font-bold tracking-wide"></div>
+      <button type="button" id="admin-toggle" data-template-id="admin-toggle" class="canva-button rounded-full border border-[#eadfcf] bg-[#fffdf8] px-4 py-2 text-xs font-bold text-[#69756f] transition hover:border-[#ec6f57] hover:text-[#c85845]" aria-pressed="false">관리자 모드</button>
+     </div>
+    </div>
+   </header>
+   <main class="relative mx-auto w-full max-w-6xl px-5 pb-14 pt-12 sm:px-8 lg:px-12">
+    <section data-template-id="hero-section" class="canva-section relative mb-10 overflow-hidden rounded-[2rem] border border-[#eadfcf] px-6 py-10 shadow-[0_18px_50px_rgba(79,66,43,0.08)] sm:px-10 sm:py-14">
+     <div class="hero-orbit" aria-hidden="true"></div>
+     <div class="relative max-w-3xl">
+      <p data-template-id="board-kicker" class="canva-text mb-4 text-xs font-bold uppercase tracking-[0.18em]">따뜻한 한마디</p>
+      <div class="hand-line mb-5" aria-hidden="true"></div>
+      <h1 data-template-id="board-title" class="canva-text display-font max-w-2xl leading-[1.08] text-4xl">서로를 칭찬하는 우리 반</h1>
+      <p data-template-id="board-description" class="canva-text mt-5 max-w-xl leading-7">작은 칭찬 하나가 친구의 하루를 행복하게 만듭니다. 고마웠던 일, 멋졌던 모습을 마음껏 표현해주세요!</p>
+     </div>
+    </section>
+    <div class="grid gap-7 lg:grid-cols-[0.9fr_1.35fr]">
+     <aside class="space-y-6">
+      <section data-template-id="form-panel" class="canva-panel rounded-[1.75rem] border border-[#eadfcf] p-6 shadow-[0_14px_34px_rgba(79,66,43,0.07)] bg-white">
+       <div class="mb-6 flex items-start gap-3">
+        <div class="mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[#ec6f57] text-white" aria-hidden="true"><i data-lucide="pen-line" class="h-4 w-4"></i>
+        </div>
+        <div>
+         <h2 data-template-id="form-title" class="canva-text font-bold text-lg">칭찬 남기기</h2>
+         <p data-template-id="form-note" class="canva-text mt-1 text-sm leading-5 text-[#69756f]">누구에게 어떤 칭찬을 하고 싶나요?</p>
+        </div>
+       </div>
+       <form id="praise-form" class="space-y-4">
+        <div><label data-template-id="giver-label" class="canva-text mb-2 block text-sm font-bold" for="giver-select">보내는 사람</label> <select id="giver-select" name="giver" class="field-input w-full rounded-xl border border-[#ded5c7] bg-[#fffdf8] px-4 py-3 text-sm font-medium text-[#24312d] transition" required> <option value="" selected disabled>내 이름을 선택하세요</option> <option value="권도훈">권도훈</option> <option value="김가윤">김가윤</option> <option value="김나영">김나영</option> <option value="김의찬">김의찬</option> <option value="김지후">김지후</option> <option value="김채연">김채연</option> <option value="김채율">김채율</option> <option value="김태훈">김태훈</option> <option value="김효빈">김효빈</option> <option value="나유찬">나유찬</option> <option value="문지혜">문지혜</option> <option value="박산">박산</option> <option value="박세령">박세령</option> <option value="박소연">박소연</option> <option value="박준모">박준모</option> <option value="박하은">박하은</option> <option value="백주민">백주민</option> <option value="안예준">안예준</option> <option value="우준혁">우준혁</option> <option value="이민혁">이민혁</option> <option value="이서은">이서은</option> <option value="이수아">이수아</option> <option value="이윤아">이윤아</option> <option value="이채윤">이채윤</option> <option value="임하준">임하준</option> <option value="전우준">전우준</option> <option value="조서인">조서인</option> <option value="최하음">최하음</option> <option value="허강준">허강준</option> <option value="허여완">허여완</option> <option value="황지원">황지원</option> </select>
+        </div>
+        <div><label data-template-id="receiver-label" class="canva-text mb-2 block text-sm font-bold" for="receiver-select">받는 사람</label> <select id="receiver-select" name="receiver" class="field-input w-full rounded-xl border border-[#ded5c7] bg-[#fffdf8] px-4 py-3 text-sm font-medium text-[#24312d] transition" required> <option value="" selected disabled>칭찬할 친구를 선택하세요</option> <option value="권도훈">권도훈</option> <option value="김가윤">김가윤</option> <option value="김나영">김나영</option> <option value="김의찬">김의찬</option> <option value="김지후">김지후</option> <option value="김채연">김채연</option> <option value="김채율">김채율</option> <option value="김태훈">김태훈</option> <option value="김효빈">김효빈</option> <option value="나유찬">나유찬</option> <option value="문지혜">문지혜</option> <option value="박산">박산</option> <option value="박세령">박세령</option> <option value="박소연">박소연</option> <option value="박준모">박준모</option> <option value="박하은">박하은</option> <option value="백주민">백주민</option> <option value="안예준">안예준</option> <option value="우준혁">우준혁</option> <option value="이민혁">이민혁</option> <option value="이서은">이서은</option> <option value="이수아">이수아</option> <option value="이윤아">이윤아</option> <option value="이채윤">이채윤</option> <option value="임하준">임하준</option> <option value="전우준">전우준</option> <option value="조서인">조서인</option> <option value="최하음">최하음</option> <option value="허강준">허강준</option> <option value="허여완">허여완</option> <option value="황지원">황지원</option> </select>
+        </div>
+        <div><label data-template-id="message-label" class="canva-text mb-2 block text-sm font-bold" for="message-input">칭찬 내용</label> <textarea data-template-id="message-input" id="message-input" name="message" placeholder="예: 발표 준비를 꼼꼼히 도와줘서 고마웠어!" class="canva-input field-input min-h-28 w-full resize-y rounded-xl border border-[#ded5c7] bg-[#fffdf8] px-4 py-3 text-sm leading-6 text-[#24312d] transition" maxlength="300" required></textarea>
+        </div><button type="submit" id="submit-button" data-template-id="submit-button" class="canva-button flex w-full items-center justify-center gap-2 rounded-xl bg-[#ec6f57] px-4 py-3.5 text-sm font-bold text-white shadow-[0_8px_0_#b94e3b] transition hover:-translate-y-0.5 hover:shadow-[0_10px_0_#b94e3b] disabled:translate-y-0 disabled:cursor-not-allowed disabled:opacity-60 disabled:shadow-none"> <i data-lucide="send" class="h-4 w-4" aria-hidden="true"></i> <span data-template-id="submit-button-text" class="canva-text">칭찬 등록하기</span> </button>
+        <p id="form-status" class="status-message text-center text-sm font-medium" aria-live="polite"></p>
+       </form>
+      </section>
+      <section data-template-id="monthly-note" class="canva-banner rounded-[1.5rem] border border-[#cfe6da] bg-[#f2f9f5] p-5">
+       <div class="flex gap-3"><i data-lucide="sparkles" class="mt-0.5 h-5 w-5 shrink-0 text-[#397a62]" aria-hidden="true"></i>
+        <p data-template-id="monthly-note-text" class="canva-text text-sm leading-6 text-[#24312d]">장난스러운 글이나 상처가 되는 글은 관리자에 의해 삭제될 수 있습니다. 따뜻한 마음만 나눠주세요!</p>
+       </div>
+      </section>
+     </aside>
+     <section aria-labelledby="feed-heading">
+      <div class="mb-6 flex flex-col gap-4 rounded-[1.5rem] border border-[#eadfcf] bg-[#fffdf8] p-5 sm:flex-row sm:items-center sm:justify-between">
+       <div>
+        <p data-template-id="month-label" class="canva-text mb-2 text-xs font-bold uppercase tracking-[0.12em]">게시글 월 선택</p><label class="sr-only" for="month-select">게시글을 확인할 월 선택</label> <select id="month-select" class="field-input w-full min-w-48 rounded-xl border border-[#ded5c7] bg-white px-4 py-2.5 text-sm font-bold text-[#24312d] sm:w-auto"></select>
+       </div>
+       <div class="flex items-center gap-2 text-sm text-[#69756f]"><i data-lucide="message-circle-heart" class="h-5 w-5 text-[#ec6f57]" aria-hidden="true"></i> <span id="month-count" aria-live="polite">0개의 칭찬</span>
+       </div>
+      </div>
+      <div class="mb-6 grid gap-4 sm:grid-cols-2">
+       <article data-template-id="giver-winner-card" class="canva-card bg-white rounded-[1.5rem] border border-[#eadfcf] p-5">
+        <div class="mb-4 flex items-center justify-between">
+         <h2 data-template-id="giver-winner-title" class="canva-text text-sm font-bold">이달의 칭찬 요정 (가장 많이 쓴 사람)</h2><span class="flex h-9 w-9 items-center justify-center rounded-xl bg-[#ffe4b5] text-[#ae6d1b]" aria-hidden="true"> <i data-lucide="megaphone" class="h-4 w-4"></i> </span>
+        </div>
+        <p id="giver-winner-name" class="winner-name display-font text-2xl font-bold">아직 없어요</p>
+        <p id="giver-winner-count" class="mt-1 text-sm text-[#69756f]">첫 칭찬을 기다리는 중</p>
+       </article>
+       <article data-template-id="receiver-winner-card" class="canva-card bg-white rounded-[1.5rem] border border-[#eadfcf] p-5">
+        <div class="mb-4 flex items-center justify-between">
+         <h2 data-template-id="receiver-winner-title" class="canva-text text-sm font-bold">이달의 칭찬 주인공 (가장 많이 받은 사람)</h2><span class="flex h-9 w-9 items-center justify-center rounded-xl bg-[#f8d7d1] text-[#c85845]" aria-hidden="true"> <i data-lucide="heart" class="h-4 w-4"></i> </span>
+        </div>
+        <p id="receiver-winner-name" class="winner-name display-font text-2xl font-bold">아직 없어요</p>
+        <p id="receiver-winner-count" class="mt-1 text-sm text-[#69756f]">따뜻한 이야기를 기다리는 중</p>
+       </article>
+      </div>
+      <div class="mb-5">
+       <h2 id="feed-heading" data-template-id="feed-title" class="canva-text display-font font-bold text-2xl">우리들의 이야기</h2>
+       <p data-template-id="feed-subtitle" class="canva-text mt-1 text-sm text-[#69756f]">친구들이 남긴 칭찬 메시지입니다.</p>
+      </div>
+      <p id="empty-state" data-template-id="empty-state" class="canva-text rounded-[1.5rem] border border-dashed border-[#d7cdbc] bg-[#fffdf8] px-6 py-14 text-center text-sm leading-6">아직 등록된 칭찬이 없어요.<br>첫 번째 칭찬의 주인공이 되어보세요!</p>
+      <div id="praise-list" class="space-y-4" aria-live="polite"></div>
+     </section>
+    </div>
+   </main>
+   <footer class="relative w-full px-5 pb-8 text-center sm:px-8">
+    <p data-template-id="footer-text" class="canva-text text-xs text-[#69756f]">만든이: 부반장 </p>
+   </footer>
+  </div>
+
+  <!-- 관리자 비밀번호 입력 모달창 -->
+  <div id="admin-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-[#24312d]/40 opacity-0 pointer-events-none transition-opacity duration-200 hidden">
+    <div class="w-full max-w-sm rounded-[1.5rem] bg-[#fffaf0] border border-[#eadfcf] p-6 shadow-xl transform scale-95 transition-transform duration-200" id="admin-modal-content">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#ec6f57] text-white">
+          <i data-lucide="lock" class="h-5 w-5"></i>
+        </span>
+        <h3 class="canva-text text-lg font-bold text-[#24312d]">관리자 인증</h3>
+      </div>
+      <p class="canva-text text-sm text-[#69756f] mb-4">부적절한 게시글을 삭제하기 위해<br>관리자 비밀번호를 입력해주세요.</p>
+      <input type="password" id="admin-password-input" class="field-input w-full rounded-xl border border-[#ded5c7] bg-white px-4 py-3 text-sm font-medium text-[#24312d] transition mb-2" placeholder="비밀번호 입력">
+      <p id="admin-modal-error" class="text-sm text-[#bd4435] mb-4 hidden font-medium">비밀번호가 일치하지 않습니다.</p>
+      
+      <div class="flex gap-2 justify-end mt-4">
+        <button type="button" id="admin-modal-cancel" class="canva-button rounded-xl px-4 py-2.5 text-sm font-bold text-[#69756f] transition hover:bg-[#f1eee8]">취소</button>
+        <button type="button" id="admin-modal-confirm" class="canva-button rounded-xl bg-[#ec6f57] px-5 py-2.5 text-sm font-bold text-white transition hover:bg-[#c85845]">확인</button>
+      </div>
+    </div>
+  </div>
+
+  <template id="praise-card-template">
+   <article data-template-id="praise-card" class="canva-card bg-white praise-card rounded-[1.5rem] border border-[#eadfcf] p-5 shadow-[0_8px_24px_rgba(79,66,43,0.05)]">
+    <div class="flex items-start justify-between gap-4">
+     <div class="min-w-0">
+      <p class="text-xs font-bold uppercase tracking-[0.1em] text-[#9b6d61]"><span data-template-id="praise-giver" class="canva-text"></span> <span class="mx-1 text-[#c7b8aa]">→</span> <span data-template-id="praise-receiver" class="canva-text"></span></p>
+      <p data-template-id="praise-message" class="canva-text mt-3 whitespace-pre-wrap leading-7 text-[#24312d]"></p>
+     </div><span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#dff1e8] text-[#397a62]" aria-hidden="true"> <i data-lucide="heart" class="h-4 w-4"></i> </span>
+    </div>
+    <div class="mt-4 flex items-center justify-between gap-3">
+     <p data-template-id="praise-date" class="canva-text text-xs text-[#69756f]"></p>
+     <div class="flex items-center gap-2">
+      <button type="button" data-template-id="praise-delete-button" class="canva-button admin-only rounded-lg px-3 py-2 text-xs font-bold text-[#984837] transition hover:bg-[#fff0ed]">삭제</button> <button type="button" data-template-id="praise-delete-confirm" class="canva-button admin-only hidden rounded-lg bg-[#984837] px-3 py-2 text-xs font-bold text-white transition hover:bg-[#7d382c]">삭제 확인</button> <button type="button" data-template-id="praise-delete-cancel" class="canva-button admin-only hidden rounded-lg px-3 py-2 text-xs font-bold text-[#69756f] transition hover:bg-[#f1eee8]">취소</button>
+     </div>
+    </div>
+   </article>
+  </template>
+  
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+    import { getAuth, signInAnonymously, onAuthStateChanged, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+    import { getFirestore, collection, onSnapshot, doc, setDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+    // 온라인 데이터베이스 설정
+    const firebaseConfig = JSON.parse(__firebase_config);
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+    const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+
+    const form = document.getElementById("praise-form");
+    const giverSelect = document.getElementById("giver-select");
+    const receiverSelect = document.getElementById("receiver-select");
+    const messageInput = document.getElementById("message-input");
+    const monthSelect = document.getElementById("month-select");
+    const praiseList = document.getElementById("praise-list");
+    const emptyState = document.getElementById("empty-state");
+    const formStatus = document.getElementById("form-status");
+    const submitButton = document.getElementById("submit-button");
+    const submitText = document.querySelector("[data-template-id='submit-button-text']");
+    const adminToggle = document.getElementById("admin-toggle");
+
+    // 관리자 모달창 관련 요소
+    const adminModal = document.getElementById("admin-modal");
+    const adminPasswordInput = document.getElementById("admin-password-input");
+    const adminModalCancel = document.getElementById("admin-modal-cancel");
+    const adminModalConfirm = document.getElementById("admin-modal-confirm");
+    const adminModalError = document.getElementById("admin-modal-error");
+    
+    // 🔥 관리자 모드 비밀번호를 여기에 설정하세요!
+    const ADMIN_PASSWORD = "7777"; 
+
+    let records = [];
+    let isAdminMode = false;
+    let currentUser = null;
+
+    function getMonthKey(date) {
+      return date.getFullYear() + "-" + String(date.getMonth() + 1).padStart(2, "0");
+    }
+
+    function formatMonth(monthKey) {
+      const [year, month] = monthKey.split("-");
+      return Number(year) + "년 " + Number(month) + "월";
+    }
+
+    function populateMonths() {
+      const year = new Date().getFullYear();
+      [9, 10, 11, 12].forEach(function(month) {
+        const key = year + "-" + String(month).padStart(2, "0");
+        const option = document.createElement("option");
+        option.value = key;
+        option.textContent = formatMonth(key);
+        monthSelect.appendChild(option);
+      });
+    }
+
+    function setStatus(message, type) {
+      formStatus.textContent = message;
+      formStatus.className = "status-message text-center text-sm font-medium " +
+        (type === "error" ? "text-[#bd4435]" :
+          type === "success" ? "text-[#267055]" : "text-[#69756f]");
+    }
+
+    function setSubmitLoading(isLoading) {
+      submitButton.disabled = isLoading;
+      submitText.textContent = isLoading ? "등록하는 중..." : "칭찬 등록하기";
+    }
+
+    function getVisibleRecords() {
+      return records
+        .filter(function(record) {
+          return record.month === monthSelect.value;
+        })
+        .sort(function(a, b) {
+          return new Date(b.created_at) - new Date(a.created_at);
+        });
+    }
+
+    function topPerson(list, field) {
+      if (!list.length) return null;
+
+      const counts = new Map();
+      list.forEach(function(record) {
+        counts.set(record[field], (counts.get(record[field]) || 0) + 1);
+      });
+
+      return [...counts.entries()].sort(function(a, b) {
+        return b[1] - a[1] || a[0].localeCompare(b[0], "ko");
+      })[0];
+    }
+
+    function updateWinner(nameId, countId, winner, emptyText) {
+      const nameElement = document.getElementById(nameId);
+      const countElement = document.getElementById(countId);
+
+      if (!winner) {
+        nameElement.textContent = "아직 없어요";
+        countElement.textContent = emptyText;
+        return;
+      }
+
+      nameElement.textContent = winner[0];
+      countElement.textContent = winner[1] + "번의 칭찬";
+    }
+
+    function createPraiseCard(record) {
+      const fragment = document.getElementById("praise-card-template").content.cloneNode(true);
+      const card = fragment.querySelector("[data-template-id='praise-card']");
+      
+      card.dataset.recordId = record.id;
+      fragment.querySelector("[data-template-id='praise-giver']").textContent = record.giver;
+      fragment.querySelector("[data-template-id='praise-receiver']").textContent = record.receiver;
+      fragment.querySelector("[data-template-id='praise-message']").textContent = record.message;
+      fragment.querySelector("[data-template-id='praise-date']").textContent =
+        new Intl.DateTimeFormat("ko-KR", {
+          month: "long",
+          day: "numeric",
+          weekday: "short"
+        }).format(new Date(record.created_at));
+
+      return fragment;
+    }
+
+    function renderBoard() {
+      const visibleRecords = getVisibleRecords();
+      document.getElementById("month-count").textContent = visibleRecords.length + "개의 칭찬";
+      emptyState.classList.toggle("hidden", visibleRecords.length > 0);
+
+      updateWinner(
+        "giver-winner-name",
+        "giver-winner-count",
+        topPerson(visibleRecords, "giver"),
+        "첫 칭찬을 기다리는 중"
+      );
+
+      updateWinner(
+        "receiver-winner-name",
+        "receiver-winner-count",
+        topPerson(visibleRecords, "receiver"),
+        "따뜻한 이야기를 기다리는 중"
+      );
+
+      const existingCards = new Map(
+        [...praiseList.children].map(function(card) {
+          return [card.dataset.recordId, card];
+        })
+      );
+
+      visibleRecords.forEach(function(record) {
+        const recordId = record.id;
+        if (existingCards.has(recordId)) {
+          existingCards.delete(recordId);
+        } else {
+          praiseList.appendChild(createPraiseCard(record));
+        }
+      });
+
+      existingCards.forEach(function(card) {
+        card.remove();
+      });
+
+      if (window.lucide) {
+        lucide.createIcons();
+      }
+    }
+
+    form.addEventListener("submit", async function(event) {
+      event.preventDefault();
+
+      if (!currentUser) {
+        setStatus("온라인 연결 중입니다. 잠시만 기다려주세요.", "error");
+        return;
+      }
+
+      const giver = giverSelect.value;
+      const receiver = receiverSelect.value;
+      const message = messageInput.value.trim();
+
+      if (!giver || !receiver || !message) {
+        setStatus("이름과 칭찬 내용을 모두 선택하고 작성해 주세요.", "error");
+        return;
+      }
+
+      if (giver === receiver) {
+        setStatus("나 자신이 아닌 친구를 칭찬해 주세요.", "error");
+        return;
+      }
+
+      const docId = crypto.randomUUID();
+      const newRecord = {
+        giver: giver,
+        receiver: receiver,
+        message: message,
+        month: monthSelect.value,
+        created_at: new Date().toISOString()
+      };
+
+      setSubmitLoading(true);
+      setStatus("따뜻한 마음을 온라인에 남기고 있어요.", "loading");
+
+      try {
+        const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'praises', docId);
+        await setDoc(docRef, newRecord);
+        form.reset();
+        setStatus("칭찬이 안전하게 저장되었어요! ✨", "success");
+      } catch (error) {
+        console.error(error);
+        setStatus("등록하지 못했어요. 잠시 후 다시 시도해 주세요.", "error");
+      } finally {
+        setSubmitLoading(false);
+      }
+    });
+
+    praiseList.addEventListener("click", async function(event) {
+      if (!isAdminMode) return;
+      const button = event.target.closest("button[data-template-id]");
+      if (!button) return;
+
+      const card = button.closest("[data-record-id]");
+      if (!card) return;
+
+      const recordId = card.dataset.recordId;
+      const record = records.find(function(item) {
+        return item.id === recordId;
+      });
+      if (!record) return;
+
+      const deleteButton = card.querySelector("[data-template-id='praise-delete-button']");
+      const confirmButton = card.querySelector("[data-template-id='praise-delete-confirm']");
+      const cancelButton = card.querySelector("[data-template-id='praise-delete-cancel']");
+
+      if (button === deleteButton) {
+        deleteButton.classList.add("hidden");
+        confirmButton.classList.remove("hidden");
+        cancelButton.classList.remove("hidden");
+        return;
+      }
+
+      if (button === cancelButton) {
+        deleteButton.classList.remove("hidden");
+        confirmButton.classList.add("hidden");
+        cancelButton.classList.add("hidden");
+        return;
+      }
+
+      if (button === confirmButton) {
+        if (!currentUser) return;
+        
+        confirmButton.disabled = true;
+        cancelButton.disabled = true;
+        setStatus("칭찬을 삭제하는 중이에요.", "loading");
+        
+        try {
+          const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'praises', recordId);
+          await deleteDoc(docRef);
+          setStatus("게시글이 삭제되었습니다.", "success");
+        } catch (error) {
+          console.error(error);
+          confirmButton.disabled = false;
+          cancelButton.disabled = false;
+          setStatus("삭제하지 못했어요. 잠시 후 다시 시도해 주세요.", "error");
+        }
+      }
+    });
+
+    // --- 관리자 모드 및 비밀번호 로직 ---
+    function showAdminModal() {
+      adminModal.classList.remove("hidden");
+      setTimeout(() => {
+        adminModal.classList.remove("opacity-0", "pointer-events-none");
+        document.getElementById("admin-modal-content").classList.remove("scale-95");
+      }, 10);
+      adminPasswordInput.value = "";
+      adminModalError.classList.add("hidden");
+      adminPasswordInput.focus();
+    }
+
+    function hideAdminModal() {
+      adminModal.classList.add("opacity-0", "pointer-events-none");
+      document.getElementById("admin-modal-content").classList.add("scale-95");
+      setTimeout(() => {
+        adminModal.classList.add("hidden");
+      }, 200);
+    }
+
+    function toggleAdminMode(enable) {
+      isAdminMode = enable;
+      document.body.classList.toggle("admin-mode", isAdminMode);
+      adminToggle.setAttribute("aria-pressed", String(isAdminMode));
+      
+      if (isAdminMode) {
+        adminToggle.textContent = "관리자 모드 종료";
+        adminToggle.classList.add("!border-[#ec6f57]", "!text-[#c85845]");
+      } else {
+        adminToggle.textContent = "관리자 모드";
+        adminToggle.classList.remove("!border-[#ec6f57]", "!text-[#c85845]");
+        
+        praiseList.querySelectorAll("[data-template-id='praise-delete-confirm'], [data-template-id='praise-delete-cancel']").forEach(function(button) {
+          button.classList.add("hidden");
+        });
+        praiseList.querySelectorAll("[data-template-id='praise-delete-button']").forEach(function(button) {
+          button.classList.remove("hidden");
+        });
+      }
+    }
+
+    adminToggle.addEventListener("click", function() {
+      if (isAdminMode) {
+        toggleAdminMode(false);
+      } else {
+        showAdminModal();
+      }
+    });
+
+    adminModalCancel.addEventListener("click", hideAdminModal);
+
+    adminModalConfirm.addEventListener("click", function() {
+      if (adminPasswordInput.value === ADMIN_PASSWORD) {
+        hideAdminModal();
+        toggleAdminMode(true);
+      } else {
+        adminModalError.classList.remove("hidden");
+        adminPasswordInput.focus();
+      }
+    });
+
+    adminPasswordInput.addEventListener("keyup", function(event) {
+      if (event.key === "Enter") {
+        adminModalConfirm.click();
+      }
+    });
+
+    monthSelect.addEventListener("change", renderBoard);
+
+    // --- 초기화 및 실시간 데이터 연동 ---
+    async function initialize() {
+      populateMonths();
+      setSubmitLoading(false);
+      if (window.lucide) {
+        lucide.createIcons();
+      }
+      
+      // 1. 온라인 접속 권한 획득
+      const initAuth = async () => {
+        if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+          await signInWithCustomToken(auth, __initial_auth_token);
+        } else {
+          await signInAnonymously(auth);
+        }
+      };
+      
+      initAuth();
+      
+      // 2. 접속 완료 후 실시간으로 친구들이 올린 글 가져오기
+      onAuthStateChanged(auth, (user) => {
+        currentUser = user;
+        if (user) {
+          const praiseRef = collection(db, 'artifacts', appId, 'public', 'data', 'praises');
+          onSnapshot(praiseRef, (snapshot) => {
+            records = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+            renderBoard();
+          }, (error) => {
+            console.error("데이터 연동 에러:", error);
+            setStatus("게시판 데이터를 불러오는데 실패했어요.", "error");
+          });
+        }
+      });
+    }
+
+    initialize();
+  </script>
+ </body>
+</html>
